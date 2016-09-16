@@ -1,11 +1,13 @@
 var selectedNumber;
 var i = 0;
 var userGuess;
+var userWins = 0;
+var userGames = 0;
 
 function makeGuess() {
   function restartGame() {
     i = 0;
-    console.log(i + " Game Restarted");
+    console.log(i + " Game Restarted2");
     document.getElementById('status').innerHTML = " ";
     selectedNumber = 5111;
     userGuess = 0;
@@ -34,16 +36,33 @@ function makeGuess() {
   if (userGuess === selectedNumber) {
     alert("Your guess " + userGuess + " was correct and it took " + i + " guesses!");
     restartGame();
+    userGames++;
+    userWins++;
+    document.getElementById('wins').innerHTML = "You have won " + userWins + " times";
+    if (userWins === 1) {
+      document.getElementById('wins').innerHTML = "You have won " + userWins + " time";
+    }
+    var userPercent = (userWins / userGames) * 100;
+    var userPercent = Math.round(userPercent);
+    document.getElementById('percent').innerHTML = "Win percentage: " + userPercent + "%";
   }
   if (i > 5) {
-    alert("You Lose!!!");
+    alert("You Lose!!! The correct answer was " + selectedNumber);
     restartGame();
+    userGames++;
+    document.getElementById('wins').innerHTML = "You have won " + userWins + " times";
+    if (userWins === 1) {
+      document.getElementById('wins').innerHTML = "You have won " + userWins + " time";
+    }
+    var userPercent = (userWins / userGames) * 100;
+    var userPercent = Math.round(userPercent);
+    document.getElementById('percent').innerHTML = "Win percentage: " + userPercent + "%";
   }
 }
 
 function restartGame() {
   i = 0;
-  console.log(i + " Game Restarted");
+  console.log(i + " Game Restarted1");
   document.getElementById('status').innerHTML = " ";
   selectedNumber = 5111;
   userGuess = 0;
